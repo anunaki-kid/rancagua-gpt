@@ -36,7 +36,7 @@ web municipal,La página web del municipio es: <a href='https://www.rancagua.cl'
 ¿cuál es la página de la muni?,La página web del municipio es: <a href='https://www.rancagua.cl' target='_blank'>www.rancagua.cl</a>
 cual es la pagina de la muni?,La página web del municipio es:<a href='https://www.rancagua.cl' target='_blank'>www.rancagua.cl</a>
 cual es la página del municipio?,La página web del municipio es:<a href='https://www.rancagua.cl' target='_blank'>www.rancagua.cl</a>
-¿Dónde queda la Dirección de Tránsito?,🚗 La Dirección de Tránsito está en el edificio Tomás Guaglén en avenida República en la intersección con Chorrillos. <a href='https://maps.app.goo.gl/rVp56n4ikQ8gNujn9' target='_blank'>Has Click aquí para ver en el mapa</a>
+¿Dónde queda la Dirección de Tránsito?,🚗 La Dirección de Tránsito está en el edificio Tomás Guaglén en avenida República  #592 - en la intersección con Chorrillos. <a href='https://maps.app.goo.gl/rVp56n4ikQ8gNujn9' target='_blank'>Has Click aquí para ver en el mapa</a>
 ¿Cuál es el horario del Departamento de Obras?,El Departamento de Obras atiende de lunes a viernes de 08:30 a 14:00 horas.
 ¿Cuáles son los requisitos para postular al descuento del gas?,Debes presentar Registro Social de Hogares fotocopia de cédula y formulario en la DIDECO.
 ¿Dónde pago la patente municipal?,Puedes pagar en línea en  o presencialmente en la municipalidad.
@@ -122,14 +122,16 @@ cual es la página del municipio?,La página web del municipio es:<a href='https
 
 
 
+https://drive.google.com/file/d/1V3njLoQHLHk40GI-0x3YPNU3bzZBkSv3/view?usp=drive_link
 
 
-
-
-
-¿Dónde encuentro la ordenanza de tenencia responsable?,Claro aquí tienes:<a href='file:///C:/Users/kevin/Downloads/RancaguaGPT_MVP/documentos/ORDENANZA%20_MASCOTAS.pdf'target='_blank'>📄 Ver Ordenanza de Tenencia Responsable (PDF)</a>
-¿Dónde encuentro la ordenanza de mascotas?,Claro aquí tienes:<a href='file:///C:/Users/kevin/Downloads/RancaguaGPT_MVP/documentos/ORDENANZA%20_MASCOTAS.pdf'target='_blank'>📄 Ver Ordenanza de Tenencia Responsable (PDF)</a>
-Dame la ordenanza de mascotas,Claro aquí tienes: <a href='file:///C:/Users/kevin/Downloads/RancaguaGPT_MVP/documentos/ORDENANZA%20_MASCOTAS.pdf'target='_blank'>📄 Ver Ordenanza de Tenencia Responsable (PDF)</a>
+cuántas ordenanzas tienes?, como me encuentro en fase de demostración tengo en mi base de datos sola la ordenanza de tenencia responsable y el PLADECO
+¿cuántas ordenanzas tienes?, como me encuentro en fase de demostración tengo en mi base de datos sola la ordenanza de tenencia responsable y el PLADECO
+cuantas ordenanzas tienes, como me encuentro en fase de demostración tengo en mi base de datos sola la ordenanza de tenencia responsable y el PLADECO
+¿Dónde encuentro la ordenanza de tenencia responsable?,Claro aquí tienes: <a href='https://drive.google.com/file/d/1V3njLoQHLHk40GI-0x3YPNU3bzZBkSv3/view?usp=drive_link' target='_blank'>📄 Ver Ordenanza de Tenencia Responsable (PDF)</a>
+¿Dónde encuentro la ordenanza de mascotas?,Claro aquí tienes: <a href='https://drive.google.com/file/d/1V3njLoQHLHk40GI-0x3YPNU3bzZBkSv3/view?usp=drive_link' target='_blank'>📄 Ver Ordenanza de Tenencia Responsable (PDF)</a>
+Dame la ordenanza de mascotas,Claro aquí tienes: <a href='https://drive.google.com/file/d/1V3njLoQHLHk40GI-0x3YPNU3bzZBkSv3/view?usp=drive_link' target='_blank'>📄 Ver Ordenanza de Tenencia Responsable (PDF)</a>
+PLADECO,Claro aquí tienes: <a href='file:///C:/Users/kevin/Downloads/RancaguaGPT_MVP/documentos/PLADECO_2023_2026.pdf'target='_blank'>📄Ver PLADECO 2023-2026 (PDF)</a>
 Dame el PLADECO,Claro aquí tienes: <a href='file:///C:/Users/kevin/Downloads/RancaguaGPT_MVP/documentos/PLADECO_2023_2026.pdf'target='_blank'>📄Ver PLADECO 2023-2026 (PDF)</a>
 ¿Dónde encuentro el PLADECO?,Claro aquí tienes: <a href='file:///C:/Users/kevin/Downloads/RancaguaGPT_MVP/documentos/PLADECO_2023_2026.pdf'target='_blank'>📄Ver PLADECO 2023-2026 (PDF)</a>
 ¿cuántos años dura el PLADECO?,El Plan de Desarrollo Comunal (PLADECO) será modificado el 2026 - al menos en esta ocación en la comuna de Rancagua abarca un periodo de 3 años desde el 2023 finalizando el 2026.
@@ -146,3 +148,20 @@ nombre del secplac,Pablo Fuentes Flores
 Número del director de SECPLAC,722-443540
 numero del secplac,722-443540
 Teléfono del director de secplac,722-443540
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
