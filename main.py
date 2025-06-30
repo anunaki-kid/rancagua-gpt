@@ -1,21 +1,17 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from pathlib import Path
+from dotenv import load_dotenv
+from sheets_utils import agregar_pregunta
+
 import pandas as pd
 import re
 import os
-from dotenv import load_dotenv
 import openai
-
-# Guardar respuestas o crear historial de ellas en un txt
 from datetime import datetime
-def guardar_pregunta_txt(pregunta):
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    linea = f"[{now}] {pregunta}\n"
-    with open("preguntas.txt", "a", encoding="utf-8") as archivo:
-        archivo.write(linea)
 
 # Cargar variables de entorno
 load_dotenv()
@@ -23,7 +19,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = FastAPI()
 
-# Activar CORS para permitir acceso desde frontend local
+# Activar CORS (para conexión frontend-backend)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -32,17 +28,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Modelo de datos para las preguntas
+# Modelo de datos
 class Pregunta(BaseModel):
     pregunta: str
 
-# Cargar respuestas desde CSV
+# Cargar CSV con respuestas simuladas
 archivo_csv = Path(__file__).parent / "respuestas_demo.csv"
-respuestas_demo = pd.read_csv(archivo_csv)
+try:
+    respuestas_demo = pd.read_csv(archivo_csv)
+except Exception as e:
+    print(f"⚠️ Error al cargar respuestas_demo.csv: {e}")
+    respuestas_demo = pd.DataFrame(columns=["pregunta", "respuesta"])
 
-# Palabras comunes para filtrar
+# Palabras comunes para ignorar
 STOPWORDS = {"de", "la", "el", "en", "los", "las", "y", "a", "un", "una", "por", "qué", "cuál", "cuáles", "dónde", "cómo", "para", "es"}
 
+# Funciones auxiliares
 def limpiar_palabras(texto):
     palabras = re.findall(r"\b\w+\b", texto.lower(), re.UNICODE)
     return [p for p in palabras if p not in STOPWORDS]
@@ -65,22 +66,38 @@ def buscar_respuesta_simulada(pregunta_usuario):
         return "🤖 Lo siento, esa información está fuera de mis conocimientos actuales."
     return mejor_coincidencia
 
+def guardar_interaccion_txt(pregunta, respuesta):
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open("preguntas.txt", "a", encoding="utf-8") as archivo:
+        archivo.write(f"[{now}] Usuario: {pregunta}\n")
+        archivo.write(f"[{now}] Rancagua GPT: {respuesta}\n\n")
+
+# Endpoint principal
 @app.post("/preguntar")
 async def preguntar(pregunta: Pregunta):
-    guardar_pregunta_txt(pregunta.pregunta)  # ✅ Esta línea guarda la pregunta en preguntas.txt
-
     if not openai.api_key or openai.api_key.startswith("sk-reemplaza"):
         respuesta = buscar_respuesta_simulada(pregunta.pregunta)
-        return {"respuesta": respuesta}
+    else:
+        try:
+            completado = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "Eres un asistente virtual de la Municipalidad de Rancagua."},
+                    {"role": "user", "content": pregunta.pregunta}
+                ]
+            )
+            respuesta = completado["choices"][0]["message"]["content"]
+        except Exception as e:
+            respuesta = f"⚠️ Error al obtener la respuesta: {str(e)}"
 
+    # Guardar historial local y remoto
+    guardar_interaccion_txt(pregunta.pregunta, respuesta)
     try:
-        respuesta = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "Eres un asistente virtual de la Municipalidad de Rancagua."},
-                {"role": "user", "content": pregunta.pregunta}
-            ]
-        )
-        return {"respuesta": respuesta["choices"][0]["message"]["content"]}
+        agregar_pregunta(pregunta.pregunta)
     except Exception as e:
-        return {"respuesta": f"⚠️ Error al obtener la respuesta: {str(e)}"}
+        print(f"⚠️ Error al guardar en Google Sheets: {e}")
+
+    return {"respuesta": respuesta}
+
+# Servir archivos estáticos (como documentos PDF)
+app.mount("/documentos", StaticFiles(directory="documentos"), name="documentos")
